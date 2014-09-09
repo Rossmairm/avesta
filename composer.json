@@ -1,0 +1,24 @@
+{
+    "name": "pandaac/avesta",
+    "description": "A pandaac distrobution package for Avesta.",
+    "authors": [
+        {
+            "name": "Christopher Eklund",
+            "email": "support@pandaac.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/models"
+        ],
+        "psr-0": {
+            "pandaac\\Avesta\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
