@@ -12,6 +12,9 @@ class AvestaCreatePandaacGuildInvitesTable extends Migration {
 	 */
 	public function up()
 	{
+		// Let us define all of the table columns that we want to use within
+		// our new table, as well as set a foreign key for the id. 
+		
 		Schema::create('__pandaac_guild_invites', function($table)
 		{
 			$table->integer('player_id')->unsigned();

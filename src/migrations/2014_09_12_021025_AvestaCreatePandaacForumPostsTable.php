@@ -12,6 +12,9 @@ class AvestaCreatePandaacForumPostsTable extends Migration {
 	 */
 	public function up()
 	{
+		// Let us define all of the table columns that we want to use within
+		// our new table, as well as set a foreign key for the id. 
+		
 		Schema::create('__pandaac_forum_posts', function($table)
 		{
 			$table->increments('id')->unsigned();

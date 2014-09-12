@@ -12,6 +12,9 @@ class AvestaCreatePandaacShopTable extends Migration {
 	 */
 	public function up()
 	{
+		// Let us define all of the table columns that we want to use within
+		// our new table.
+
 		Schema::create('__pandaac_shop', function($table)
 		{
 			$table->increments('id')->unsigned();

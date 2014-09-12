@@ -12,6 +12,9 @@ class AvestaCreatePandaacGuildsTable extends Migration {
 	 */
 	public function up()
 	{
+		// Let us define all of the table columns that we want to use within
+		// our new table, as well as set a foreign key for the id. 
+		
 		Schema::create('__pandaac_guilds', function($table)
 		{
 			$table->integer('guild_id')->primary()->unsigned();
@@ -21,7 +24,20 @@ class AvestaCreatePandaacGuildsTable extends Migration {
 			$table->foreign('guild_id')->references('id')->on('guilds')->onDelete('cascade');
 		});
 		
-		Trigger::createOrAlter(__FILE__, 'INSERT', 'AFTER', 'guilds', 'INSERT INTO `__pandaac_guilds` (`guild_id`) VALUES(NEW.`id`);');
+
+		// Once the table has been created, we want to create a trigger that inserts a 
+		// relevant row into the newly created table every time a new guild is created.
+
+		Trigger::createOrAlter(__FILE__, 'INSERT', 'AFTER', 'guilds', function()
+		{
+			return 'INSERT INTO `__pandaac_guilds` (`guild_id`) VALUES(NEW.`id`);';
+		});
+
+
+		// If any guilds already exists in the guilds table, we want to seed the
+		// __pandaac_guilds table with their respective information.
+
+		App::make('seeder')->call('pandaac\Avesta\Seeds\GuildSeeder');
 	}
 
 	/**
