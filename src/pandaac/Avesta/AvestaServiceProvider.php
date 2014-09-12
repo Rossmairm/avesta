@@ -20,6 +20,8 @@ class AvestaServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('pandaac/avesta', 'distro');
+
+		require_once __DIR__.'/../../events.php';
 	}
 
 	/**
