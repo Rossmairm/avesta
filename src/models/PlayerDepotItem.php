@@ -1,6 +1,6 @@
 <?php namespace pandaac\Avesta;
 
-class Forum extends \pandaac\Foundation\Forum {
+class PlayerDepotItem extends \pandaac\Foundation\PlayerDepotItem {
 
 	/**
 	 * Override columns with their appropriate counterpart.
