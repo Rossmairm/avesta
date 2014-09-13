@@ -29,7 +29,7 @@ return array(
 
 	'account.create' => array(
 
-		'account'	 => ['required', 'digits_between:6,8', 'numeric', 'unique:accounts,id'],
+		'account'	 => ['required', 'digits_between:6,8', 'regex:/^([0-9]+)$/', 'unique:accounts,id'],
 		'email'		 => ['required', 'email', 'unique:accounts,email'],
 		'password'	 => ['required', 'confirmed', 'min:6'],
 		'captcha'	 => ['required', 'captcha'],
