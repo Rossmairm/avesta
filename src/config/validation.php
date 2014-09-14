@@ -295,7 +295,7 @@ return array(
 
 	'forum.post.edit' => array(
 
-		'content'	 => ['required', 'between:3,1000'],
+		'content'	 => ['required', 'between:15,3000'],
 
 	),
 
