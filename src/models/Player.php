@@ -44,7 +44,7 @@ class Player extends \pandaac\Foundation\Player {
 	 * @param  \Guild $guild
 	 * @return \Illuminate\Database\Query\Builder
 	 */
-	public function scopeGuild(\Illuminate\Database\Eloquent\Builder $query, Guild $guild)
+	public function scopeGuilds(\Illuminate\Database\Eloquent\Builder $query, Guild $guild)
 	{
 		return $query->whereHas('guild', function($table) use($guild)
 		{
