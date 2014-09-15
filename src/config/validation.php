@@ -264,7 +264,7 @@ return array(
 
 		'title'		 => ['required', 'between:3,60'],
 		'author'	 => ['required', 'is_account_character', 'level:2'],
-		'content'	 => ['required', 'between:15,3000'],
+		'content'	 => ['required', 'between:15,3000', 'max_images:3'],
 
 	),
 
@@ -280,7 +280,7 @@ return array(
 	'forum.reply.create' => array(
 
 		'author'	 => ['required', 'is_account_character', 'level:2'],
-		'content'	 => ['required', 'between:15,3000'],
+		'content'	 => ['required', 'between:15,3000', 'max_images:3'],
 
 	),
 
@@ -295,7 +295,7 @@ return array(
 
 	'forum.post.edit' => array(
 
-		'content'	 => ['required', 'between:15,3000'],
+		'content'	 => ['required', 'between:15,3000', 'max_images:3'],
 
 	),
 
