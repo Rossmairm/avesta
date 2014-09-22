@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AvestaCreatePandaacShopItemsTable extends Migration {
+class AvestaCreatePandaacStoreItemsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -15,7 +15,7 @@ class AvestaCreatePandaacShopItemsTable extends Migration {
 		// Let us define all of the table columns that we want to use within
 		// our new table, as well as set a foreign key for the id. 
 		
-		Schema::create('__pandaac_shop_items', function($table)
+		Schema::create('__pandaac_store_items', function($table)
 		{
 			$table->increments('id')->unsigned();
 			$table->integer('product_id')->unsigned();
@@ -26,7 +26,7 @@ class AvestaCreatePandaacShopItemsTable extends Migration {
 			$table->integer('disabled')->default(0);
 			$table->integer('order')->default(1);
 
-			$table->foreign('product_id')->references('id')->on('__pandaac_shop')->onDelete('cascade');
+			$table->foreign('product_id')->references('id')->on('__pandaac_store')->onDelete('cascade');
 		});
 	}
 
@@ -37,7 +37,7 @@ class AvestaCreatePandaacShopItemsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('__pandaac_shop_items');
+		Schema::drop('__pandaac_store_items');
 	}
 
 }

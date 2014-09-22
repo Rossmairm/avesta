@@ -55,6 +55,7 @@ class PlayerDeath extends \pandaac\Foundation\PlayerDeath {
 	public function attributes()
 	{
 		return array(
+			'victim'	 => $this->format($this->victim, null),
 			'time'		 => $this->time,
 			'level'		 => $this->level,
 			'killer'	 => $this->format($this->killer, $this->lasthit_killer),

@@ -49,7 +49,7 @@ return array(
 	'account.email' => array(
 
 		'email'		 => ['required', 'email', 'unique:accounts,email'],
-		'password'	 => ['required', 'is_account_password'],
+		'password'	 => ['required', 'account_password'],
 
 	),
 
@@ -66,7 +66,7 @@ return array(
 
 		'password'					=> ['required', 'confirmed', 'min:6'],
 		'password_confirmation'		=> ['required'],
-		'current'					=> ['required', 'is_account_password'],
+		'current'					=> ['required', 'account_password'],
 
 	),
 
@@ -81,10 +81,10 @@ return array(
 
 	'player.create' => array(
 
-		'name'		 => ['required', 'between:3,20', 'alpha_space', 'blacklist:pandaac::server.blacklist', 'unique:players,name'],
+		'name'		 => ['required', 'between:3,20', 'nickname', 'blacklist:pandaac::server.blacklist', 'unique:players,name'],
 		'gender'	 => ['required', 'in_config_key:pandaac::server.genders'],
-		'vocation'	 => ['required', 'in_config_key:pandaac::server.vocations'],
-		'town'		 => ['required', 'in_config_key:pandaac::server.towns'],
+		'vocation'	 => ['required', 'in_config:pandaac::app.vocations'],
+		'town'		 => ['required', 'in_config:pandaac::app.towns'],
 
 	),
 
@@ -99,7 +99,7 @@ return array(
 
 	'player.edit' => array(
 
-		'character' => ['required', 'is_account_character'],
+		'character' => ['required', 'account_character'],
 		'hidden'	=> ['boolean'],
 		'comment'	=> ['max:255'],
 
@@ -116,24 +116,8 @@ return array(
 
 	'player.delete' => array(
 
-		'character'	=> ['required', 'is_account_character'],
-		'password'	=> ['required', 'is_account_password'],
-
-	),
-
-	/*
-	|--------------------------------------------------------------------------
-	| Guild Function, can_create_guild
-	|--------------------------------------------------------------------------
-	|
-	| ...
-	|
-	*/
-
-	'function.guild.can-create' => array(
-
-		'account'	 => ['is_premium', 'no_ranked_players'],
-		'character'	 => ['level:50'],
+		'character'	=> ['required', 'account_character'],
+		'password'	=> ['required', 'account_password'],
 
 	),
 
@@ -148,9 +132,9 @@ return array(
 
 	'guild.create' => array(
 
-		'name'		 => ['required', 'between:3,30', 'alpha_space', 'blacklist:pandaac::server.blacklist', 'unique:guilds,name'],
-		'leader'	 => ['required', 'is_account_character', 'can_create_guild'],
-		'password'	 => ['required', 'is_account_password'],
+		'name'		 => ['required', 'between:3,30', 'nickname', 'blacklist:pandaac::server.blacklist', 'unique:guilds,name'],
+		'leader'	 => ['required', 'account_character', 'premium', 'guildless', 'guild_influence'],
+		'password'	 => ['required', 'account_password'],
 
 	),
 
@@ -181,7 +165,8 @@ return array(
 
 	'guild.invite' => array(
 
-		'character'	 => ['required', 'exists:players,name', 'guild_free', 'level:1'],
+		'character'	 => ['required', 'exists:players,name', 'guildless', 'level:1'],
+		'cancel'	 => ['required', 'exists:players,id'],
 
 	),
 
@@ -196,8 +181,8 @@ return array(
 
 	'guild.resign' => array(
 
-		'leader'	 => ['can_lead_guild'],
-		'password'	 => ['required', 'is_account_password'],
+		'leader'	 => ['premium', 'guild_influence'],
+		'password'	 => ['required', 'account_password'],
 
 	),
 
@@ -212,7 +197,7 @@ return array(
 
 	'guild.disband' => array(
 
-		'password'	 => ['required', 'is_account_password'],
+		'password'	 => ['required', 'account_password'],
 
 	),
 
@@ -230,7 +215,7 @@ return array(
 		'member'	 => ['required', 'exists:players,id'],
 		'action'	 => ['required', 'in:rank,title,exclude'],
 		'rank'		 => ['required_if:action,rank'],
-		'title'		 => ['required_if:action,title', 'max:15', 'alpha_space'],
+		'title'		 => ['max:25', 'nickname'],
 
 	),
 
@@ -247,7 +232,7 @@ return array(
 
 		'total'		 => ['required', 'numeric', 'between:3,20'],
 		'rank'		 => ['required'],
-		'name'		 => ['alpha_space', 'between:3,30'],
+		'name'		 => ['nickname', 'between:3,30'],
 
 	),
 
@@ -263,7 +248,7 @@ return array(
 	'forum.thread.create' => array(
 
 		'title'		 => ['required', 'between:3,60'],
-		'author'	 => ['required', 'is_account_character', 'level:2'],
+		'author'	 => ['required', 'account_character', 'level:2'],
 		'content'	 => ['required', 'between:15,3000', 'max_images:3'],
 
 	),
@@ -279,7 +264,7 @@ return array(
 
 	'forum.reply.create' => array(
 
-		'author'	 => ['required', 'is_account_character', 'level:2'],
+		'author'	 => ['required', 'account_character', 'level:2'],
 		'content'	 => ['required', 'between:15,3000', 'max_images:3'],
 
 	),
@@ -301,16 +286,16 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Claim Shop Product
+	| Claim Store Product
 	|--------------------------------------------------------------------------
 	|
 	| ...
 	|
 	*/
 
-	'shop.claim' => array(
+	'store.claim' => array(
 
-		'character'		 => ['is_account_character', 'is_offline'],
+		'character'		 => ['account_character', 'offline'],
 
 	),
 

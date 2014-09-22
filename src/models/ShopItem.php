@@ -1,6 +1,6 @@
 <?php namespace pandaac\Avesta;
 
-class ShopItem extends \pandaac\Foundation\ShopItem {
+class StoreItem extends \pandaac\Foundation\StoreItem {
 
 	/**
 	 * Override columns with their appropriate counterpart.

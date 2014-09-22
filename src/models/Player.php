@@ -1,5 +1,8 @@
 <?php namespace pandaac\Avesta;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
 class Player extends \pandaac\Foundation\Player {
 
 	/**
@@ -12,6 +15,26 @@ class Player extends \pandaac\Foundation\Player {
 		return array(
 			'nick'	 => 'guildnick',
 		);
+	}
+
+	/**
+	 * Save the model to the database.
+	 *
+	 * @param  array  $options
+	 * @return bool
+	 */
+	public function save(array $options = array())
+	{
+		// If this is the first time we save a player (i.e. upon creation), we want to assign
+		// the lowest ranked group to them.
+
+		if ( ! isset($this->group_id) and Schema::hasTable('groups'))
+		{
+			$this->group_id = DB::table('groups')->select('id')->orderBy('access', 'ASC')->take(1)->first()->id;
+		}
+
+
+		parent::save($options);
 	}
 
 	/**

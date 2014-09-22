@@ -44,8 +44,8 @@ class AvestaServiceProvider extends ServiceProvider {
 		$loader->alias('PlayerDepotItem',	__NAMESPACE__.'\PlayerDepotItem');
 		$loader->alias('PlayerDeath',		__NAMESPACE__.'\PlayerDeath');
 		$loader->alias('Record',			__NAMESPACE__.'\Record');
-		$loader->alias('ShopItem',			__NAMESPACE__.'\ShopItem');
-		$loader->alias('ShopProduct',		__NAMESPACE__.'\ShopProduct');
+		$loader->alias('StoreItem',			__NAMESPACE__.'\StoreItem');
+		$loader->alias('StoreProduct',		__NAMESPACE__.'\StoreProduct');
 	}
 
 	/**

@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class AccountSeeder extends Seeder {
 
@@ -25,6 +26,17 @@ class AccountSeeder extends Seeder {
 			}
 
 			DB::table('__pandaac_accounts')->insert($data);
+		}
+
+
+		if (Schema::hasTable('groups') and DB::table('groups')->select('id')->count() == 0)
+		{
+			DB::table('groups')->insert(array(
+				'name'			 => 'Player',
+				'access'		 => 0,
+				'maxdepotitems'	 => 2000,
+				'maxviplist'	 => 100,
+			));
 		}
 	}
 
