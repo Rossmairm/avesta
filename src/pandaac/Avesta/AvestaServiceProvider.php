@@ -1,9 +1,6 @@
 <?php namespace pandaac\Avesta;
 
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
-
-class AvestaServiceProvider extends ServiceProvider {
+class AvestaServiceProvider extends \pandaac\Bamboo\pandaacServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -20,7 +17,7 @@ class AvestaServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('pandaac/avesta', 'distro');
-
+		
 		require_once __DIR__.'/../../events.php';
 	}
 
@@ -31,21 +28,21 @@ class AvestaServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$loader = AliasLoader::getInstance();
-
-		$loader->alias('Account',			__NAMESPACE__.'\Account');
-		$loader->alias('Forum',				__NAMESPACE__.'\Forum');
-		$loader->alias('ForumPost',			__NAMESPACE__.'\ForumPost');
-		$loader->alias('Guild',				__NAMESPACE__.'\Guild');
-		$loader->alias('GuildRank',			__NAMESPACE__.'\GuildRank');
-		$loader->alias('HighScore',			__NAMESPACE__.'\HighScore');
-		$loader->alias('Player',			__NAMESPACE__.'\Player');
-		$loader->alias('PlayerSkill',		__NAMESPACE__.'\PlayerSkill');
-		$loader->alias('PlayerDepotItem',	__NAMESPACE__.'\PlayerDepotItem');
-		$loader->alias('PlayerDeath',		__NAMESPACE__.'\PlayerDeath');
-		$loader->alias('Record',			__NAMESPACE__.'\Record');
-		$loader->alias('StoreItem',			__NAMESPACE__.'\StoreItem');
-		$loader->alias('StoreProduct',		__NAMESPACE__.'\StoreProduct');
+		static::alias(array(
+			'pandaac\Avesta\Account',
+			'pandaac\Avesta\Forum',
+			'pandaac\Avesta\ForumPost',
+			'pandaac\Avesta\Guild',
+			'pandaac\Avesta\GuildRank',
+			'pandaac\Avesta\HighScore',
+			'pandaac\Avesta\Player',
+			'pandaac\Avesta\PlayerSkill',
+			'pandaac\Avesta\PlayerDepotItem',
+			'pandaac\Avesta\PlayerDeath',
+			'pandaac\Avesta\Record',
+			'pandaac\Avesta\StoreItem',
+			'pandaac\Avesta\StoreProduct',
+		));
 	}
 
 	/**
